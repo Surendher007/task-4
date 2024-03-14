@@ -1,4 +1,4 @@
-This is my 4th taask & there are two folders in the projects
+This is my 4th task & there are two folders in the projects
 
 
 **1. Do the below programs in anonymous function & IIFE**
