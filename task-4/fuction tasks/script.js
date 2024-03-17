@@ -1,86 +1,80 @@
-
-//Print odd numbers in an array: 
-
-const printOddNumbers = function(arr) {
+// Print odd numbers in an array
+(function(arr) {
     arr.forEach(function(num) {
         if (num % 2 !== 0) {
             console.log(num);
         }
     });
-};
-printOddNumbers([1, 2, 3, 4, 5]); 
+})([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
-
-// -- Convert all the strings to title caps in a string array --
-
-const convertToTitleCaps = function(arr) {
-    return arr.map(function(str) {
+// Convert all the strings to title caps in a string array
+(function(arr) {
+    var titleCapsArray = arr.map(function(str) {
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
     });
-};
-console.log(convertToTitleCaps(["hello", "world"])); 
+    console.log(titleCapsArray);
+})(["hello", "world", "javascript"]);
 
-//  -- Sum of all numbers in an array --
-
-const sumOfArray = function(arr) {
-    return arr.reduce(function(acc, num) {
-        return acc + num;
+// Sum of all numbers in an array
+(function(arr) {
+    var sum = arr.reduce(function(acc, curr) {
+        return acc + curr;
     }, 0);
-};
-console.log(sumOfArray([1, 2, 3, 4, 5])); 
+    console.log(sum);
+})([1, 2, 3, 4, 5]);
 
-//  -- Return all the prime numbers in an array --
-
-const getPrimes = function(arr) {
-    return arr.filter(function(num) {
+// Return all the prime numbers in an array
+(function(arr) {
+    function isPrime(num) {
         if (num <= 1) return false;
-        for (let i = 2; i <= Math.sqrt(num); i++) {
+        for (var i = 2; i <= Math.sqrt(num); i++) {
             if (num % i === 0) return false;
         }
         return true;
-    });
-};
-console.log(getPrimes([1, 2, 3, 4, 5, 6, 7])); 
-
-// -- Return all the palindromes in an array --
-
-const getPalindromes = function(arr) {
-    return arr.filter(function(str) {
-        return str.toLowerCase() === str.toLowerCase().split('').reverse().join('');
-    });
-};
-console.log(getPalindromes(["madam", "hello", "level"])); 
-
-// -- Return median of two sorted arrays of the same size --
-
-const medianOfArrays = function(arr1, arr2) {
-    const mergedArr = arr1.concat(arr2);
-    const sortedArr = mergedArr.sort((a, b) => a - b);
-    const length = sortedArr.length;
-    const middleIndex = Math.floor(length / 2);
-    if (length % 2 === 0) {
-        return (sortedArr[middleIndex - 1] + sortedArr[middleIndex]) / 2;
-    } else {
-        return sortedArr[middleIndex];
     }
-};
-console.log(medianOfArrays([1, 3, 5], [2, 4, 6])); 
+    var primeNumbers = arr.filter(function(num) {
+        return isPrime(num);
+    });
+    console.log(primeNumbers);
+})([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
-// -- Remove duplicates from an array --
+// Return all the palindromes in an array
+(function(arr) {
+    function isPalindrome(str) {
+        return str === str.split('').reverse().join('');
+    }
+    var palindromes = arr.filter(function(str) {
+        return isPalindrome(str);
+    });
+    console.log(palindromes);
+})(["level", "hello", "racecar", "world"]);
 
-const removeDuplicates = function(arr) {
-    return arr.filter((value, index, self) => self.indexOf(value) === index);
-};
-console.log(removeDuplicates([1, 2, 2, 3, 4, 4, 5]));
+// Return median of two sorted arrays of the same size
+(function(arr1, arr2) {
+    var mergedArray = arr1.concat(arr2);
+    mergedArray.sort(function(a, b) {
+        return a - b;
+    });
+    var length = mergedArray.length;
+    var median;
+    if (length % 2 === 0) {
+        median = (mergedArray[length / 2 - 1] + mergedArray[length / 2]) / 2;
+    } else {
+        median = mergedArray[Math.floor(length / 2)];
+    }
+    console.log(median);
+})([1, 2, 3], [4, 5, 6]);
 
-// -- Rotate an array by k times --
+// Remove duplicates from an array
+(function(arr) {
+    var uniqueArray = arr.filter(function(item, index, self) {
+        return self.indexOf(item) === index;
+    });
+    console.log(uniqueArray);
+})([1, 2, 2, 3, 4, 4, 5]);
 
-const rotateArray = function(arr, k) {
-    const rotations = k % arr.length;
-    return arr.slice(rotations).concat(arr.slice(0, rotations));
-};
-console.log(rotateArray([1, 2, 3, 4, 5], 2));
-
- 
-
-
+// Rotate an array by k times
+(function(arr, k) {
+    var rotatedArray = arr.slice(k % arr.length).concat(arr.slice(0, k % arr.length));
+    console.log(rotatedArray);
+})([1, 2, 3, 4, 5], 2);
